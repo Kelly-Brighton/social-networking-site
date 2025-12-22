@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Top navigation bar -->
+    <nav id="top-nav">
+        <div class="nav-left">
+            <img src="img/redconnect-logo.png" id="logo" alt="RedConnect Logo">
+            <span class="logo-text">RedConnect</span>
+        </div>
+
+        <div class="nav-center"> <!-- Navigation buttons section -->
+            <button class="nav-btn" data-section="feed-section">Home</button> <!-- Navigate to feed -->
+            <button class="nav-btn" data-section="explore-section">Explore</button> <!-- Navigate to explore page -->
+            <button class="nav-btn" data-section="create-post-section">Create</button> <!-- Navigate to create post -->
+            <button class="nav-btn" data-section="profile-section">Profile</button> <!-- Navigate to profile -->
+
+        </div>
+
+        <div class="nav-right"> <!-- Right-side nav buttons -->
+            <button id="logout-btn" class="logout-btn">Logout</button> <!-- Logout button -->
+        </div>
+    </nav>
+
+    <!-- Login screen section -->
+    <section id="login-section">
+        <h2 class="auth-title">Welcome to RedConnect</h2>
+
+        <div class="auth-card">
+            <input id="login-username" class="auth-input" placeholder="Username">
+            <input id="login-password" class="auth-input" type="password" placeholder="Password">
+            <button id="login-btn" class="auth-btn">Login</button>
+
+            <p class="auth-switch">
+                Don't have an account?
+                <span id="switch-to-register" class="switch-link">Register</span>
+            </p>
+            <p id="login-feedback"></p>
+        </div>
+    </section>
+
+    <!-- Registration section -->
+    <section id="register-section" class="hidden">
+        <h2 class="auth-title">Create an Account</h2>
+
+        <div class="auth-card">
+            <input id="reg-fullname" class="auth-input" placeholder="Full Name">
+            <input id="reg-username" class="auth-input" placeholder="Username">
+            <input id="reg-password" class="auth-input" type="password" placeholder="Password">
+
+            <button id="register-btn" class="auth-btn">Register</button>
+
+            <p class="auth-switch">
+                Already have an account?
+                <span id="switch-to-login" class="switch-link">Login</span>
+            </p>
+            <p id="reg-feedback"></p>
+        </div>
+    </section>
+
+    <!-- Main application content -->
+    <main id="main-content">
+
+        <!-- Feed -->
+        <section id="feed-section" class="section">
+            <h2>Your Feed</h2>
+            <div class="feed-top-header">
+                <p class="welcome-title">Welcome back 👋</p>
+                <p class="welcome-sub">Here are the latest updates from people you follow</p>
+            </div>
+            <div id="feed-list"></div>
+        </section>
+
+        <!-- UPDATED EXPLORE SECTION -->
+        <section id="explore-section" class="section hidden">
+
+            <h2 class="section-title">Search Users & Posts</h2>
+
+            <!-- Tabs -->
+            <div class="explore-tabs">
+                <button id="tab-users" class="explore-tab active">Users</button>
+                <button id="tab-posts" class="explore-tab">Posts</button>
+            </div>
+
+            <!-- USERS TAB -->
+            <div id="explore-users" class="explore-content">
+                <div class="search-bar">
+                    <input id="search-users-input" class="search-input" placeholder="Search users...">
+                    <button id="search-users-btn" class="btn">Search</button>
+                </div>
+                <div id="search-users-results" class="results-list"></div>
+                <p id="follow-feedback"></p>
+            </div>
+
+            <!-- POSTS TAB -->
+            <div id="explore-posts" class="explore-content hidden">
+                <div class="search-bar">
+                    <input id="search-contents-input" class="search-input" placeholder="Search posts...">
+                    <button id="search-contents-btn" class="btn">Search</button>
+                </div>
+                <div id="search-contents-results" class="results-list"></div>
+            </div>
+
+            <div class="explore-card">
+                <h3>Manchester United Fixtures</h3>
+                <button id="load-fixtures-btn" class="fixtures-btn">Load Fixtures</button>
+                <div id="fixtures-list" class="results-list"></div>
+            </div>
+
+
+        </section>
+
+        <!-- Create Post -->
+        <section id="create-post-section" class="section hidden">
+            <h2 class="section-title">Create Post</h2>
+
+            <div class="create-wrapper">
+
+                <!-- Caption input field -->
+                <textarea id="post-caption" class="create-caption" placeholder="Write a caption..."></textarea>
+
+                <!-- Upload image box -->
+                <div id="image-preview-area" class="create-upload-box">
+                    <span class="upload-text">Tap to add image</span>
+                    <img id="image-preview" class="hidden" alt="Preview">
+                </div>
+
+                <!-- Post button -->
+                <button type="submit" form="create-post-form" class="create-post-btn">
+                    Post
+                </button>
+
+                <!-- Hidden form for image input -->
+                <form id="create-post-form">
+                    <input type="file" id="post-image" accept="image/*" hidden>
+                </form>
+
+                <!-- Status message -->
+                <p id="create-post-msg" class="create-msg"></p>
+            </div>
+        </section>
+
+        <!-- PROFILE SECTION -->
+        <section id="profile-section" class="section hidden">
+            <h2>Your Profile</h2>
+
+            <div id="profile-info" class="profile-header">
+
+            </div>
+
+            <h3>Your Posts</h3>
+            <div id="profile-posts"></div>
+        </section>
+
+
+    </main>
+
+    <!-- DELETE CONFIRMATION MODAL -->
+    <div id="delete-modal" class="modal-overlay hidden">
+        <div class="modal-box delete-box">
+            <h3>Delete Post?</h3>
+            <p>This action cannot be undone.</p>
+
+            <div class="delete-actions">
+                <button id="delete-cancel-btn" class="btn cancel-btn">Cancel</button>
+                <button id="delete-confirm-btn" class="btn delete-confirm-btn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
