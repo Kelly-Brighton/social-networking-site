@@ -72,6 +72,10 @@ app.get("/M01034045/login/check", (req, res) => {
   res.json({ username: req.session.currentUser.username });
 });
 
+app.get("/ping", (req, res) => {
+  res.send("pong");
+});
+
 // Connect to database and start server
 connectDB().then(() => {
   // Start server at configured port

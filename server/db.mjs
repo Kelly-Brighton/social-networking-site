@@ -21,6 +21,8 @@ export async function connectDB() {
     }
 }
 
+console.log("URI:", process.env.MONGO_URI);
+
 // Function to return the database connection
 export function getDB() {
     return db;
