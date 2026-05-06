@@ -503,6 +503,22 @@ html {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+ai-search-input {
+  width: 600px;
+  border: red 1px solid;
+}
+
+ai-prompt-btn {
+  margin-top: 8px;
+  background: #b91c1c;
+  /* RED */
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 .explore-card h3,
 .create-post-card h3 {
   margin-bottom: 1rem;
@@ -696,6 +712,18 @@ html {
   transition: background 0.25s ease;
 }
 
+ai-btn{
+  background: #b91c1c;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
 .create-post-btn:hover {
   background: #991b1b;
 }
@@ -825,4 +853,5 @@ html {
     border-bottom: 1px solid #ddd;
     margin-top: 10px;
 }
+
 
