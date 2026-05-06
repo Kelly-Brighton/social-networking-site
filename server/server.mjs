@@ -42,6 +42,7 @@ import loginRoutes from "./routes/login.mjs";
 import contentsRoutes from "./routes/contents.mjs";
 import followRoutes from "./routes/follow.mjs";
 import fixturesRoutes from "./routes/fixtures.mjs";
+import aiRoutes from "./routes/ai.mjs";
 
 // Serve static files from "public" directory
 app.use(express.static(path.join(__dirname, "../public")));
@@ -60,6 +61,7 @@ app.use(loginRoutes);
 app.use(contentsRoutes);
 app.use(followRoutes);
 app.use(fixturesRoutes);
+app.use(aiRoutes);
 
 // Additional endpoint used by main.js to check login session
 app.get("/M01034045/login/check", (req, res) => {

@@ -115,6 +115,11 @@
                 <div id="fixtures-list" class="results-list"></div>
             </div>
 
+            <div class="ai-input">
+                <input id="ai-prompt" class="search-input" placeholder="Ask AI for content ideas...">
+                <button id="ai-prompt-btn" class="btn">Generate</button>
+                <p id="ai-prompt-feedback"></p>
+            </div>
 
         </section>
 
@@ -132,6 +137,11 @@
                     <span class="upload-text">Tap to add image</span>
                     <img id="image-preview" class="hidden" alt="Preview">
                 </div>
+
+                <!--AI Button-->
+                <button type="button" id="ai-caption-btn" class="btn ai-btn">
+                    Generate AI Content
+                </button>
 
                 <!-- Post button -->
                 <button type="submit" form="create-post-form" class="create-post-btn">

@@ -363,6 +363,10 @@ async function loadFeed(page = 1) {
         <button class="comment-btn" data-id="${post._id}">
             Post
         </button>
+        <button class="ai-comment-btn" data-text="${post.caption}">
+            Suggest Comment
+        </button>
+
         <p id="comment-feedback-${post._id}" class="comment-feedback"></p>
     </div>
 `;
@@ -870,10 +874,65 @@ document.getElementById("delete-confirm-btn").addEventListener("click", async ()
     pendingDeletePostId = null;
 });
 
+document.getElementById("ai-caption-btn").addEventListener("click", async () => {
 
+    const caption = document.getElementById("post-caption").value;
 
+    // Validate that caption is not empty
+    if (!caption.trim()) {
+        alert("Please enter a caption to improve.");
+        return;
+    }
 
+    // Send request to backend to generate AI caption
+    const res = await fetch("/M01034045/ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "caption", text: caption })
+    });
 
+    const data = await res.json();
 
+    document.getElementById("post-caption").value = data.result;
+});
 
+document.addEventListener("click", async (e) => {
+    if (!e.target.classList.contains("ai-comment-btn")) return;
 
+    const text = e.target.dataset.text;
+
+    // Send request to backend to generate AI comment
+    const res = await fetch("/M01034045/ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "comment", text })
+    });
+
+    const data = await res.json();
+
+    // Find the comment input field related to this button
+    const postId = e.target.nextElementSibling.dataset.id;
+    const input = document.querySelector(`.comment-input[data-id="${postId}"]`);
+
+    // Fill the comment input with the suggested comment
+    input.value = data.result;
+});
+
+document.getElementById("ai-prompt-btn").addEventListener("click", async () => {
+    const prompt = document.getElementById("ai-prompt").value;
+
+    if (!prompt.trim()) {
+        alert("Please enter a prompt for AI.");
+        return;
+    }
+
+    const res = await fetch("/M01034045/ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "general", text: prompt })
+    });
+
+    const data = await res.json();
+
+    document.getElementById("ai-prompt-feedback").innerText = data.result;
+});
