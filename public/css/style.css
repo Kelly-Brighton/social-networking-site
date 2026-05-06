@@ -279,6 +279,16 @@ body {
   /* DARK RED */
 }
 
+.ai-comment-btn{
+  margin-top: 8px;
+  background: #b91c1c;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 /* SUGGESTED USERS BLOCK */
 .suggested-user {
   display: flex;
@@ -825,4 +835,5 @@ html {
     border-bottom: 1px solid #ddd;
     margin-top: 10px;
 }
+
 

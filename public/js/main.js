@@ -912,7 +912,7 @@ document.addEventListener("click", async (e) => {
 
     // Find the comment input field related to this button
     const postId = e.target.nextElementSibling.dataset.id;
-    const input = document.querySelector(`.comment-input[data-id="${postId}"]`);
+    const input = document.querySelector(`.comment-input[data-id="${post._id}"]`);
 
     // Fill the comment input with the suggested comment
     input.value = data.result;
