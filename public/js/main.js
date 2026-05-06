@@ -897,24 +897,35 @@ document.getElementById("ai-caption-btn").addEventListener("click", async () => 
 });
 
 document.addEventListener("click", async (e) => {
+
+    // Only run if AI comment button clicked
     if (!e.target.classList.contains("ai-comment-btn")) return;
 
+    // Get the post caption text
     const text = e.target.dataset.text;
 
-    // Send request to backend to generate AI comment
+    // Get the parent comment section
+    const commentSection = e.target.closest(".comment-section");
+
+    // Find the comment input INSIDE this post
+    const input = commentSection.querySelector(".comment-input");
+
+    // Send request to backend
     const res = await fetch("/M01034045/ai", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "comment", text })
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            type: "comment",
+            text
+        })
     });
 
+    // Convert response
     const data = await res.json();
 
-    // Find the comment input field related to this button
-    const postId = e.target.nextElementSibling.dataset.id;
-    const input = document.querySelector(`.comment-input[data-id="${post._id}"]`);
-
-    // Fill the comment input with the suggested comment
+    // Put AI suggestion into comment box
     input.value = data.result;
 });
 
@@ -929,7 +940,7 @@ document.getElementById("ai-prompt-btn").addEventListener("click", async () => {
     const res = await fetch("/M01034045/ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "general", text: prompt })
+        body: JSON.stringify({ type: "match", text: prompt })
     });
 
     const data = await res.json();

@@ -5,18 +5,18 @@ const router = express.Router();
 
 // Initialize OpenAI client with API key from environment variable
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY,
 });
 
 // Endpoint to handle AI generated content requests
 router.post("/M01034045/ai", async (req, res) => {
-    try{
+    try {
         const { type, text } = req.body;
 
         let prompt = "";
 
         // Improve the prompt based on the requested type of content
-        if (type === "caption"){
+        if (type === "caption") {
             prompt = `
             Rewrite this Manchester United caption to sound more exciting and engaging for fans: 
             
@@ -24,7 +24,7 @@ router.post("/M01034045/ai", async (req, res) => {
             
             Kepp it short, energetic, and football-themed. Don't use emojis`;
         }
-        else if (type === "comment"){
+        else if (type === "comment") {
             prompt = `
             Generate a short, hype football comment for this Manchester United post: 
             
@@ -33,13 +33,18 @@ router.post("/M01034045/ai", async (req, res) => {
             Depending on the content, it could be a reaction to a match result, a player transfer, or a team announcement. Make it sound like a passionate fan's comment. Keep it concise and avoid emojis.`;
         }
 
-        else if (type === "match"){
+        else if (type === "match") {
             prompt = `
-            A Manchester United fan asked: 
-            
+            You are a Manchester United football assistant for a social networking site called RedConnect.
+
+            The user said:
             "${text}"
-            
-            Give a short, friendly football-style answer.`;
+
+            Reply in a short, exciting, football-fan style.
+
+            Do not use placeholders like [insert opponent].
+            If you don't know exact fixtures, respond generally.
+            Avoid emojis.`;
         }
 
         // Call OpenAI API to generate content based on the prompt
@@ -50,9 +55,9 @@ router.post("/M01034045/ai", async (req, res) => {
 
         // Send the generated content back to the client
         res.json({ result: response.choices[0].message.content });
-        
+
     }
-    catch (error){
+    catch (error) {
         console.error("Error generating AI content:", error);
         res.status(500).json({ error: "Failed to generate AI content" });
     }
